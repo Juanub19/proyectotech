@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Gastos Hormiga</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2E4053;    
+            --secondary-color: #8CA4A4;  
+            --accent-color: #A7CEEB;     
+            --text-color: #2E4053;       
+            --light-color: #F7F7F7;      
+            --white-color: #FFFFFF;      
+            --header-green: #8bc34a;    
+            --highlight-color: #2E4053;  
+        }
+       
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+       
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f9e9 0%, #f1f8e9 100%);
+        }
+       
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background-color: var(--header-green);
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%);
+            transform: rotate(30deg);
+        }
+       
+        h1 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+        }
+       
+        .header p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+       
+        .columns-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+       
+        @media (max-width: 1024px) {
+            .columns-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .columns-container {
+                grid-template-columns: 1fr;
+            }
+        }
+       
+        .column {
+            background: var(--white-color);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .column::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--header-green), var(--accent-color));
+        }
+        
+        .column:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+       
+        .column h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .column h2 i {
+            margin-right: 10px;
+            color: var(--header-green);
+        }
+       
+        .column h3 {
+            color: var(--primary-color);
+            margin: 20px 0 12px 0;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .column h3 i {
+            margin-right: 8px;
+            color: var(--header-green);
+            font-size: 1.1rem;
+        }
+       
+        .image-container {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #8bc34a 0%, #4CAF50 100%);
+            border-radius: 12px;
+            margin: 25px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .image-container .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+       
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--secondary-color);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+       
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+       
+        ul {
+            padding-left: 24px;
+        }
+       
+        li {
+            margin-bottom: 12px;
+            padding-left: 8px;
+            position: relative;
+        }
+        
+        li::before {
+            content: "•";
+            color: var(--header-green);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        li strong {
+            color: var(--primary-color);
+        }
+       
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            display: inline-block;
+            padding: 4px 0;
+            border-bottom: 1px dotted var(--accent-color);
+        }
+       
+        a:hover {
+            color: var(--header-green);
+            text-decoration: none;
+            border-bottom: 1px solid var(--header-green);
+        }
+       
+        /* Estilos para la calculadora */
+        .calculator-form {
+            margin-top: 20px;
+        }
+       
+        .form-group {
+            margin-bottom: 18px;
+        }
+       
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-group label i {
+            margin-right: 8px;
+            color: var(--header-green);
+        }
+       
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--light-color);
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--header-green);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.2);
+        }
+       
+        .btn {
+            background: linear-gradient(135deg, var(--header-green) 0%, #4CAF50 100%);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn i {
+            margin-right: 10px;
+        }
+       
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+       
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(139, 195, 74, 0.1) 0%, rgba(76, 175, 80, 0.1) 100%);
+            color: var(--primary-color);
+            border-radius: 12px;
+            display: none;
+            border-left: 5px solid var(--header-green);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+       
+        .result-item {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ccc;
+            font-size: 1.1rem;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+       
+        .highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 4px 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: var(--secondary-color);
+            font-size: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .tip-container {
+            background-color: rgba(139, 195, 74, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid var(--header-green);
+        }
+        
+        .tip-header {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .tip-header i {
+            margin-right: 10px;
+            color: var(--header-green);
+        }
+        
+        .highlight-info {
+            background-color: rgba(46, 64, 83, 0.1); 
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid var(--highlight-color); 
+        }
+        
+        .highlight-info .tip-header i {
+            color: var(--highlight-color); 
+        }
+        
+        .source-link {
+            color: var(--highlight-color); 
+            font-weight: 600;
+        }
+        
+        .source-link:hover {
+            color: #1c2d3d; 
+            border-bottom: 1px solid #1c2d3d;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-coins"></i> Control de Gastos Hormiga</h1>
+        <p>Identifica y reduce esos pequeños gastos que afectan tu economía</p>
+    </div>
+   
+    <div class="columns-container">
+        <!-- Columna 1: Información -->
+        <div class="column">
+            <h2><i class="fas fa-info-circle"></i> Gastos Hormiga</h2>
+           
+            <h3><i class="fas fa-bullseye"></i> Objetivo de esta sección</h3>
+            <p>Identificar y eliminar esos pequeños gastos diarios que parecen insignificantes pero que, al sumarlos, representan una cantidad considerable en tu presupuesto mensual.</p>
+           
+            <h3><i class="fas fa-question-circle"></i> ¿Qué son los gastos hormiga?</h3>
+            <p>Se refiere a pequeñas compras que realizamos casi sin notarlo en nuestro día a día. Estas erogaciones de dinero suelen ser de bajo valor, por lo que suelen pasar desapercibidas. Sin embargo, su recurrencia puede afectar significativamente tu presupuesto mensual y anual.</p>
+           
+            <h3><i class="fas fa-list"></i> ¿En qué consisten?</h3>
+            <ul>
+                <li>Compras pequeñas diarias (café, golosinas, etc.).</li>
+                <li>Salidas sociales espontáneas.</li>
+                <li>Compras impulsivas de poca importancia.</li>
+                <li>Suscripciones olvidadas.</li>
+                <li>Comidas fuera de casa.</li>
+                <li>Transporte innecesario.</li>
+            </ul>
+            
+            <div class="highlight-info">
+                <div class="tip-header">
+                    <i class="fas fa-chart-line"></i> Datos Reveladores
+                </div>
+                <p>Jóvenes entre 18 y 39 años: Son el grupo demográfico que más tiende a realizar estos gastos pequeños pero frecuentes, señala <a href="https://www.larepublica.co/" class="source-link" target="_blank">LaRepublica.co</a>.</p>
+            </div>
+           
+            <div class="image-container">
+                 <img src="ilustración de gastos hormiga.jpg" alt="Ilustración gastos hormiga" style="width:100%; height:100%; object-fit:cover;"> -->
+                
+        
+            </div>
+        </div>
+       
+        <!-- Columna 2: Consejos y Recursos -->
+        <div class="column">
+            <h2><i class="fas fa-tips"></i> ¿Cómo reducirlos?</h2>
+            <ul>
+                <li><strong>Registra todos tus gastos</strong> pequeños durante una semana</li>
+                <li><strong>Identifica</strong> cuáles son realmente necesarios</li>
+                <li><strong>Establece un presupuesto</strong> para gastos menores</li>
+                <li><strong>Evita compras por impulso</strong> espera 24 horas</li>
+                <li><strong>Busca alternativas</strong> más económicas</li>
+                <li><strong>Automatiza tus ahorros</strong> primero</li>
+                <li><strong>Revisa periódicamente</strong> tus suscripciones</li>
+                <li><strong>Usa listas de compras</strong> y cíñete a ellas</li>
+            </ul>
+           
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/m-fDfGm_Qrk?si=xhcfwMM0ujG3-IZM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+           
+            <h3><i class="fas fa-book"></i> Recursos recomendados</h3>
+            <ul>
+                <li><a href="https://blog.bancolombia.com/educacion-financiera/como-controlar-gastos-hormiga/" target="_blank">BANCOLOMBIA - Educación Financiera</a></li>
+                <li><a href="https://www.bbva.com/es/salud-financiera/plan-de-accion-para-evitar-los-gastos-hormiga/" target="_blank">BBVA - Salud financiera</a></li>
+                <li><a href="https://www.tributi.com/mis-finanzas-personales/que-son-los-gastos-hormiga-y-como-eliminarlos-para-ahorrar-mas-dinero" target="_blank">TRIBUTI - Finanzas personales</a></li>
+                <li><a href="https://www.santander.com.mx/educacion-financiera/blog/tips-para-reducir-gastos-hormiga/" target="_blank">Santander - Educación financiera</a></li>
+            </ul>
+        </div>
+       
+        <!-- Columna 3: Calculadora -->
+        <div class="column">
+            <h2><i class="fas fa-calculator"></i> Calculadora de Impacto</h2>
+            <p>Descubre cuánto podrías ahorrar eliminando tus gastos hormiga:</p>
+           
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label for="gasto-promedio"><i class="fas fa-money-bill-wave"></i> Gasto promedio diario ($):</label>
+                    <input type="number" id="gasto-promedio" placeholder="Ej. 50" min="0">
+                </div>
+               
+                <div class="form-group">
+                    <label for="dias-gasto"><i class="fas fa-calendar-day"></i> Días a la semana con este gasto:</label>
+                    <input type="number" id="dias-gasto" placeholder="Ej. 5" min="1" max="7">
+                </div>
+               
+                <button class="btn" onclick="calcularImpacto()"><i class="fas fa-calculator"></i> Calcular impacto anual</button>
+               
+                <div class="result" id="resultado">
+                    <div class="result-item">
+                        Gasto semanal: <span class="highlight" id="gasto-semanal">$0</span>
+                    </div>
+                    <div class="result-item">
+                        Gasto mensual: <span class="highlight" id="gasto-mensual">$0</span>
+                    </div>
+                    <div class="result-item">
+                        Gasto anual: <span class="highlight" id="gasto-anual">$0</span>
+                    </div>
+                    <div class="result-item">
+                        En 5 años: <span class="highlight" id="gasto-cinco-anos">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-container">
+                <div class="tip-header">
+                    <i class="fas fa-piggy-bank"></i> Consejo de Ahorro
+                </div>
+                <p>Si ahorras la cantidad calculada durante 5 años, podrías tener un gran avance para ajustar para un medio de transporte, la cuota inicial de una casa, etc.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Control de Gastos Hormiga - Herramienta para mejorar tu salud financiera</p>
+    </div>
+
+    <script>
+        function calcularImpacto() {
+            // Obtener valores
+            const gastoPromedio = parseFloat(document.getElementById('gasto-promedio').value) || 0;
+            const diasGasto = parseInt(document.getElementById('dias-gasto').value) || 0;
+           
+            // Validar
+            if (gastoPromedio <= 0 || diasGasto <= 0) {
+                alert("Por favor ingresa valores válidos");
+                return;
+            }
+           
+            // Calcular
+            const semanal = gastoPromedio * diasGasto;
+            const mensual = semanal * 4;
+            const anual = mensual * 12;
+            const cincoAnos = anual * 5;
+           
+            // Formatear
+            const formatter = new Intl.NumberFormat('es-MX', {
+                style: 'currency',
+                currency: 'MXN'
+            });
+           
+            // Mostrar resultados
+            document.getElementById('gasto-semanal').textContent = formatter.format(semanal);
+            document.getElementById('gasto-mensual').textContent = formatter.format(mensual);
+            document.getElementById('gasto-anual').textContent = formatter.format(anual);
+            document.getElementById('gasto-cinco-anos').textContent = formatter.format(cincoAnos);
+            document.getElementById('resultado').style.display = 'block';
+            
+            // Hacer scroll suave a los resultados
+            document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // Permitir calcular con la tecla Enter
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        calcularImpacto();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
