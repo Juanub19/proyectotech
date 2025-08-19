@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre los beneficios de ahorrar en bancos, compara productos de ahorro y conoce consejos para mejorar tus finanzas personales en Colombia.">
+    <title>Ahorro e Inversión</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #f7f7f7;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: #222;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 32px 40px;
+        }
+        h1, h2, h3 {
+            color: #8bc34a;
+        }
+        .hero-img {
+            width: 100%;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 24px;
+        }
+        .center-img {
+            display: flex;
+            justify-content: center;
+            margin: 32px 0;
+        }
+        .center-img img {
+            max-width: 500px;
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+            object-fit: cover;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+        }
+        th, td {
+            border: 1px solid rgb(0, 0, 0);
+            padding: 12px 16px;
+            text-align: left;
+        }
+        th {
+            background: #87ceeb;
+        }
+        tr:nth-child(even) {
+            background: #f7f7f7;
+        }
+        .tips {
+            background: #f7f7f7;
+            border-left: 5px solid #8bc34a;
+            padding: 18px 24px;
+            margin: 32px 0;
+            border-radius: 8px;
+        }
+        .inversion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 32px 0 24px 0;
+        }
+        .inv-card {
+            border-radius: 10px;
+            padding: 20px 16px;
+            box-shadow: 0 2px 8px #dbeee3;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .inv-card.green {
+            background: #e6f4ea;
+            border-left: 6px solid #3bb273;
+        }
+        .inv-card.gray {
+            background: #f3f4f6;
+            border-left: 6px solid #bcd;
+        }
+        .bancos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 32px;
+            justify-content: center;
+        }
+        .banco-link {
+            text-decoration: none;
+            color: inherit;
+            width: 260px;
+        }
+        .banco-card {
+            background: #e3ecf7;
+            border-radius: 10px;
+            padding: 18px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 2px 8px #bcd3e6;
+            transition: transform .2s;
+        }
+        .banco-card img {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            padding: 4px;
+        }
+        @media (max-width: 900px) {
+            .inversion-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 16px 4px; }
+            table, th, td { font-size: 14px; }
+            .inversion-grid { grid-template-columns: 1fr; }
+            .inv-card { min-height: unset; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>El Ahorro en los Bancos</h1>
+        <!-- IMAGEN PRINCIPAL DE AHORRO EN BANCOS -->
+        <img class="hero-img" src="https://mesfix.com/blog/wp-content/uploads/2019/09/como-ganar-con-tu-cuenta-destacada.jpg" alt="Ahorro en bancos">
+        <!-- FIN IMAGEN PRINCIPAL -->
+
+        <p>
+            Ahorrar en bancos es una de las formas más seguras y eficientes de proteger y hacer crecer tu dinero. Los bancos ofrecen diferentes productos de ahorro que se adaptan a las necesidades de cada persona, brindando seguridad, intereses y acceso a servicios financieros.
+        </p>
+
+        <h2>Beneficios de ahorrar en bancos</h2>
+        <ul>
+            <li>Seguridad para tu dinero</li>
+            <li>Acceso a intereses y rendimientos</li>
+            <li>Facilidad para realizar pagos y transferencias</li>
+            <li>Acceso a créditos y otros productos financieros</li>
+            <li>Control y registro de tus movimientos</li>
+        </ul>
+
+        <h2>Comparativa de productos de ahorro</h2>
+        <table>
+            <tr>
+                <th>Producto</th>
+                <th>Interés Anual (%)</th>
+                <th>Disponibilidad</th>
+                <th>Ventajas</th>
+            </tr>
+            <tr>
+                <td>Cuenta de Ahorro</td>
+                <td>2.5</td>
+                <td>Inmediata</td>
+                <td>Acceso rápido, sin monto mínimo</td>
+            </tr>
+            <tr>
+                <td>Depósito a Plazo Fijo</td>
+                <td>5.0</td>
+                <td>Al vencimiento</td>
+                <td>Mayor interés, seguro</td>
+            </tr>
+            <tr>
+                <td>Cuenta Nómina</td>
+                <td>1.0</td>
+                <td>Inmediata</td>
+                <td>Facilita pagos y transferencias</td>
+            </tr>
+        </table>
+
+        <div class="tips">
+            <h2>Consejos para ahorrar mejor</h2>
+            <ul>
+                <li>Define una meta de ahorro mensual.</li>
+                <li>Elige el producto bancario que más se adapte a tus necesidades.</li>
+                <li>Evita retirar dinero de tus ahorros salvo que sea necesario.</li>
+                <li>Compara tasas de interés entre diferentes bancos.</li>
+                <li>Utiliza herramientas digitales para monitorear tus finanzas.</li>
+            </ul>
+        </div>
+
+        <!-- IMAGEN AHORRO EN FORMATO DESTACADO -->
+        <div class="center-img">
+            <img 
+                src="https://vivirenelpoblado.com/wp-content/uploads/2022/09/El-habito-del-ahorro-como-superar-la-alcancia-p.jpg" 
+                alt="Persona contando monedas, simbolizando el hábito del ahorro y las finanzas personales">
+        </div>
+        <!-- FIN IMAGEN AHORRO -->
+
+        <h2>¿Cómo puede invertir una persona normal?</h2>
+        <p>
+            Invertir no es solo para expertos o personas con mucho dinero. Cualquier persona puede comenzar a invertir siguiendo algunos pasos sencillos:
+        </p>
+
+        <!-- IMAGEN DE AHORRO, MONEDAS, FINANZAS PERSONALES -->
+        <img class="hero-img" src="https://images.unsplash.com/photo-1523289333742-be1143f6b766?auto=format&fit=crop&w=900&q=80" alt="Ahorro, monedas, finanzas personales">
+        <!-- FIN IMAGEN -->
+
+        <div class="inversion-grid">
+            <div class="inv-card green">
+                <strong>Infórmate</strong>
+                <p>Aprende sobre los diferentes tipos de inversiones como fondos de inversión, CDT, acciones o fondos de pensiones voluntarias.</p>
+            </div>
+            <div class="inv-card gray">
+                <strong>Define tus objetivos</strong>
+                <p>Establece para qué quieres invertir: educación, vivienda, retiro, etc.</p>
+            </div>
+            <div class="inv-card green">
+                <strong>Comienza con poco</strong>
+                <p>Puedes empezar con montos pequeños en productos como fondos de inversión colectiva o CDT.</p>
+            </div>
+            <div class="inv-card gray">
+                <strong>Diversifica</strong>
+                <p>No pongas todo tu dinero en un solo producto, reparte tu inversión en diferentes opciones.</p>
+            </div>
+            <div class="inv-card green">
+                <strong>Consulta con expertos</strong>
+                <p>Busca asesoría en tu banco o con asesores financieros certificados.</p>
+            </div>
+            <div class="inv-card gray">
+                <strong>Revisa periódicamente</strong>
+                <p>Monitorea tus inversiones y ajusta tu estrategia según tus necesidades y el mercado.</p>
+            </div>
+        </div>
+
+        <!-- IMAGEN DE PERSONA CALCULANDO INVERSIONES -->
+        <img class="hero-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" alt="Persona calculando inversiones con calculadora y monedas">
+        <!-- FIN IMAGEN -->
+
+        <p>
+            Recuerda que toda inversión implica riesgos, pero informándote y siendo constante puedes hacer crecer tu dinero a largo plazo.
+        </p>
+
+        <h2>Bancos Principales</h2>
+        <h3>Encontrarás Información oficial de cada uno sobre ahorro e inversión</h3>
+        <div class="bancos-grid">
+            <a href="https://www.bancodebogota.com/personas/cuenta-de-ahorros" target="_blank" rel="noopener" class="banco-link">
+                <div class="banco-card">
+                    <img src="https://play-lh.googleusercontent.com/zBd7Q4x1OcQbBubjxwrCYzj2bJx8-tpF045EkxWgSDzQ33wOLhoqiHJp0ovSzTdCI54" alt="Banco de Bogotá">
+                    <div>
+                        <strong>Banco de Bogotá</strong><br>
+                        <span style="font-size:14px; color:#1a4d8f;">Uno de los bancos más antiguos y sólidos de Colombia.</span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.bancolombia.com/educacion-financiera" target="_blank" rel="noopener" class="banco-link">
+                <div class="banco-card">
+                    <img src="https://play-lh.googleusercontent.com/hdDlABmkyl9Xx745ejg4h9VKlEG8eH2r-tXuf3ndYKSJfDjwRfhNscMjM5C6sEQDtA4=w240-h480-rw" alt="Bancolombia">
+                    <div>
+                        <strong>Bancolombia</strong><br>
+                        <span style="font-size:14px; color:#1a4d8f;">Líder en innovación y banca digital en Colombia.</span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.davivienda.com/wps/portal/personas/nuevo/personas/aqui_puedo/construir_mi_futuro/inversiones/cdt/a0487af0-343f-4c94-bc79-9943220507a0/" target="_blank" rel="noopener" class="banco-link">
+                <div class="banco-card">
+                    <img src="https://www.beneficiosdavivienda.com/apps-davivienda/assets/home/personas/Icono_davivienda_movil.png" alt="Davivienda">
+                    <div>
+                        <strong>Davivienda</strong><br>
+                        <span style="font-size:14px; color:#1a4d8f;">Reconocido por su innovación y cercanía al cliente.</span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.bbva.com.co/personas/productos/inversion.html?web=wdi:::00002378-home_categoria_inversion-gen-:home_categoria_inversion-contr-:homeinvers::::::banner:::" target="_blank" rel="noopener" class="banco-link">
+                <div class="banco-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBebggoiawXyyQzjVt-1MopkLaewpXsAhGCw&s" alt="BBVA Colombia">
+                    <div>
+                        <strong>BBVA Colombia</strong><br>
+                        <span style="font-size:14px; color:#1a4d8f;">Presencia internacional y servicios digitales.</span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.bancopopular.com.co/wps/portal/bancopopular/inicio/para-ti/productos-ahorro-inversion/cuentas-ahorro/cuenta-para-ahorrar" target="_blank" rel="noopener" class="banco-link">
+                <div class="banco-card">
+                    <img src="https://infolocal.comfenalcoantioquia.com/media/com_jbusinessdirectory/pictures/companies/1131/cropped-1622127815.jpeg" alt="Banco Popular">
+                    <div>
+                        <strong>Banco Popular</strong><br>
+                        <span style="font-size:14px; color:#1a4d8f;">Especialista en productos de ahorro y crédito.</span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://digital.bancocajasocial.com/cdt/asesor" target="_blank" rel="noopener" class="banco-link">
+                <div class="banco-card">
+                    <img src="https://infolocal.comfenalcoantioquia.com/media/com_jbusinessdirectory/pictures/companies/1124/cropped-1622126685.jpeg" alt="Banco Caja Social">
+                    <div>
+                        <strong>Banco Caja Social</strong><br>
+                        <span style="font-size:14px; color:#1a4d8f;">Enfoque social y apoyo a familias colombianas.</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <footer style="text-align:center; margin-top:40px; color:#888; font-size:15px;">
+            &copy; 2025 Personal Finance
+        </footer>
+    </div>
+</body>
+</html>
